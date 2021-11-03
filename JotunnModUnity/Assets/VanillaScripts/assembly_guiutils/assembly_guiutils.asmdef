@@ -1,0 +1,15 @@
+{
+    "name": "assembly_guiutils",
+    "references": [
+        "GUID:281a180ef0413c64893f803e8d064eaf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
