@@ -21,15 +21,10 @@ namespace SageRobes
             });
         }
 
-        public static void SetArtifactSkillType()
+        public static void SetArtifactSkillType(ItemDrop ItemDrop)
         {
-            foreach (string artifact in SageRobes.MyBundleName.artifactList) 
-            {
-                string prefab = artifact.Replace(" ", "");
-                ItemDrop item = ObjectDB.instance.GetItemPrefab(prefab).GetComponent<ItemDrop>();
-                item.m_itemData.m_shared.m_skillType = ArtifactSkillType;
-                Debug.LogError(item.m_itemData.m_shared.m_skillType);
-            }
+            ItemDrop.m_itemData.m_shared.m_skillType = ArtifactSkillType;
+            Debug.LogError(ItemDrop.m_itemData.m_shared.m_skillType);
         }
     }
 }

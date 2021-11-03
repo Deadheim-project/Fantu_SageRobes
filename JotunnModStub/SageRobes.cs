@@ -25,7 +25,6 @@ namespace SageRobes
         public const string PluginName = "SageRobes";
         public const string PluginVersion = "0.0.1";
         private Harmony _harmony;
-        public static bool skillSet = false;
         public static AssetBundle ArmorBundle;
         List<string> robeList = new List<string> { "Sage Robe Black", "Sage Robe Blue", "Sage Robe Brown", "Sage Robe Gray", "Sage Robe Green", "Sage Robe Red", "Sage Robe White", "Sage Tunic Black", "Sage Tunic Blue", "Sage Tunic Brown", "Sage Tunic Gray", "Sage Tunic Green", "Sage Tunic Red", "Sage Tunic White", "Sage Hood Black", "Sage Hood Blue", "Sage Hood Brown", "Sage Hood Gray", "Sage Hood Green", "Sage Hood Red", "Sage Hood White" };
         List<string> crownList = new List<string> { "Sage Crown Gold 01", "Sage Crown Gold 02", "Sage Crown Gold 03", "Sage Crown Silver 01", "Sage Crown Silver 02", "Sage Crown Silver 03", "Sage Crown Obsidian 01", "Sage Crown Obsidian 02", "Sage Crown Obsidian 03" };
@@ -33,40 +32,26 @@ namespace SageRobes
 
         private void Awake()
         {
-            LoadSageRobes();
             Skill.CreateSkill();
 
             PrefabManager.OnVanillaPrefabsAvailable += LoadSageRobes;
 
             _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGUID);
-
         }
 
-
-        [HarmonyPatch(typeof(Player), "OnSpawned")]
-        public static class OnSpawned
-        {
-            private static void Postfix(Player __instance)
-            {
-                if (skillSet) return;
-                Skill.SetArtifactSkillType();
-                skillSet = true;
-            }
-        }
         private void LoadSageRobes()
         {
             ArmorBundle = GetAssetBundleFromResources("sagerobes");
             robeList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.RobeRequirements));
             crownList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.CrownRequirements));
-            artifactList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.ArtifactRequirements));
+            artifactList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.ArtifactRequirements, true));
         }
 
-        public void AddItemsWithRenderedIcons(string itemName, RequirementConfig[] requirements)
+        public void AddItemsWithRenderedIcons(string itemName, RequirementConfig[] requirements, bool setSkill = false)
         {
             try
             {
                 GameObject sagerobes = ArmorBundle.LoadAsset<GameObject>(itemName.Replace(" ", ""));
-
                 void CreateArmorRecipe(Sprite sprite)
                 {
                     CustomItem customItem = new CustomItem(sagerobes, fixReference: false, new ItemConfig
@@ -77,9 +62,10 @@ namespace SageRobes
                         MinStationLevel = 1,
                         Icons = new[] { sprite },
                         Requirements = requirements
-
                     });
+
                     ItemManager.Instance.AddItem(customItem);
+                    if (setSkill) Skill.SetArtifactSkillType(customItem.ItemDrop);
                 }
 
                 RenderManager.Instance.EnqueueRender(sagerobes, CreateArmorRecipe);
