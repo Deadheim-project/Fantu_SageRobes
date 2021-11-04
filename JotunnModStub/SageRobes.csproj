@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>Z:\Jogos\Steam\steamapps\common\Valheim\BepInEx\plugins\SageRobes\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -66,14 +66,14 @@
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\valheimRfs\core\0Harmony.dll</HintPath>
+      <HintPath>Z:\Jogos\ValheimMod\ValheimDLLs\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="assembly_valheim_publicized">
-      <HintPath>..\..\..\..\Desktop\valheimRfs\assembly_valheim_publicized.dll</HintPath>
+      <HintPath>Z:\Jogos\ValheimMod\ValheimDLLs\assembly_valheim_publicized.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx, Version=5.4.11.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\valheimRfs\core\BepInEx.dll</HintPath>
+      <HintPath>Z:\Jogos\ValheimMod\ValheimDLLs\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="Jotunn, Version=2.3.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JotunnLib.2.3.10\lib\net462\Jotunn.dll</HintPath>
@@ -86,13 +86,15 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\valheimRfs\unity\UnityEngine.dll</HintPath>
+      <HintPath>Z:\Jogos\ValheimMod\ValheimDLLs\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>Z:\Jogos\ValheimMod\ValheimDLLs\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>Z:\Jogos\ValheimMod\ValheimDLLs\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureEnvironmentPropsImport" BeforeTargets="PrepareForBuild">

@@ -23,12 +23,15 @@ namespace SageRobes
 
         public const string PluginGUID = "fantu.sagerobes";
         public const string PluginName = "SageRobes";
-        public const string PluginVersion = "0.0.1";
+        public const string PluginVersion = "1.1.0";
         private Harmony _harmony;
         public static AssetBundle ArmorBundle;
-        List<string> robeList = new List<string> { "Sage Robe Black", "Sage Robe Blue", "Sage Robe Brown", "Sage Robe Gray", "Sage Robe Green", "Sage Robe Red", "Sage Robe White", "Sage Tunic Black", "Sage Tunic Blue", "Sage Tunic Brown", "Sage Tunic Gray", "Sage Tunic Green", "Sage Tunic Red", "Sage Tunic White", "Sage Hood Black", "Sage Hood Blue", "Sage Hood Brown", "Sage Hood Gray", "Sage Hood Green", "Sage Hood Red", "Sage Hood White" };
+        List<string> robeList = new List<string> { "Sage Robe Black", "Sage Robe Blue", "Sage Robe Brown", "Sage Robe Gray", "Sage Robe Green", "Sage Robe Red", "Sage Robe White", "Sage Tunic Black", "Sage Tunic Blue", "Sage Tunic Brown", "Sage Tunic Gray", "Sage Tunic Green", "Sage Tunic Red", "Sage Tunic White", "Sage Hood Black", "Sage Hood Blue", "Sage Hood Brown", "Sage Hood Gray", "Sage Hood Green", "Sage Hood Red", "Sage Hood White", "Sage Pants" };
         List<string> crownList = new List<string> { "Sage Crown Gold 01", "Sage Crown Gold 02", "Sage Crown Gold 03", "Sage Crown Silver 01", "Sage Crown Silver 02", "Sage Crown Silver 03", "Sage Crown Obsidian 01", "Sage Crown Obsidian 02", "Sage Crown Obsidian 03" };
-        public static List<string> artifactList = new List<string> { "Sage Fire Staff", "Sage Holy Staff", "Sage Ice Staff", "Sage Lightning Staff", "Sage Dark Staff", "Death Blade", "Sage Book 01", "Sage Book 02", "Sage Book 03", "Sage Book 04" };
+        List<string> tomeList = new List<string> { "Sage Book 01", "Sage Book 02", "Sage Book 03", "Sage Book 04" };
+        List<string> bladeList = new List<string> { "Needle Blade", "Death Blade" };
+        List<string> headList = new List<string> { "Head Elf" };
+        public static List<string> artifactList = new List<string> { "Sage Fire Staff", "Sage Holy Staff", "Sage Ice Staff", "Sage Lightning Staff", "Sage Dark Staff" };
 
         private void Awake()
         {
@@ -44,6 +47,9 @@ namespace SageRobes
             ArmorBundle = GetAssetBundleFromResources("sagerobes");
             robeList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.RobeRequirements));
             crownList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.CrownRequirements));
+            tomeList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.TomeRequirements));
+            bladeList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.BladeRequirements));
+            headList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.headRequirements));
             artifactList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.ArtifactRequirements, true));
         }
 
@@ -58,7 +64,7 @@ namespace SageRobes
                     {
                         Name = itemName,
                         Amount = 1,
-                        CraftingStation = "piece_workbench",
+                        CraftingStation = "piece_artisanstation",
                         MinStationLevel = 1,
                         Icons = new[] { sprite },
                         Requirements = requirements
@@ -67,8 +73,14 @@ namespace SageRobes
                     ItemManager.Instance.AddItem(customItem);
                     if (setSkill) Skill.SetArtifactSkillType(customItem.ItemDrop);
                 }
+                var SageIcons = new RenderManager.RenderRequest(sagerobes)
+                {
+                    Rotation = RenderManager.IsometricRotation,
 
-                RenderManager.Instance.EnqueueRender(sagerobes, CreateArmorRecipe);
+                };
+//                RenderManager.Instance.EnqueueRender(rr, CreateBooks);
+//                RenderManager.Instance.EnqueueRender(sagerobes, CreateArmorRecipe);
+                RenderManager.Instance.EnqueueRender(SageIcons, CreateArmorRecipe);
             }
             catch (Exception ex)
             {
