@@ -96,7 +96,7 @@ namespace SageRobes
                     },
                     new RequirementConfig
                     {
-                        Item = "Silver ",
+                        Item = "Silver",
                         Amount = 5,
                         AmountPerLevel = 1
                     },
@@ -135,6 +135,33 @@ namespace SageRobes
                         Item = "CapeTest",
                         Amount = 10,
                         AmountPerLevel = 5
+                    }
+        };
+        public static RequirementConfig[] scholarstaffRequirements = new RequirementConfig[4]
+        {
+                    new RequirementConfig
+                    {
+                        Item = "GreydwarfEye",
+                        Amount = 50,
+                        AmountPerLevel = 25
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Bronze",
+                        Amount = 10,
+                        AmountPerLevel = 5
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Ruby",
+                        Amount = 5,
+                        AmountPerLevel = 2
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "FineWood",
+                        Amount = 20,
+                        AmountPerLevel = 10
                     }
         };
     }
