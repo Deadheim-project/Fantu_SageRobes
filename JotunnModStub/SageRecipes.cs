@@ -164,5 +164,51 @@ namespace SageRobes
                         AmountPerLevel = 10
                     }
         };
+
+        public static RequirementConfig[] ElvenArmorRequirements = new RequirementConfig[3]
+        {
+                    new RequirementConfig
+                    {
+                        Item = "Silver",
+                        Amount = 10,
+                        AmountPerLevel = 5
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Ruby",
+                        Amount = 1,
+                        AmountPerLevel = 1
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Crystal",
+                        Amount = 5,
+                        AmountPerLevel = 5
+                    },
+        };
+
+        public static RequirementConfig[] ElvenWeaponRequirements = new RequirementConfig[3]
+        {
+                    new RequirementConfig
+                    {
+                        Item = "Silver",
+                        Amount = 10,
+                        AmountPerLevel = 5
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Ruby",
+                        Amount = 1,
+                        AmountPerLevel = 1
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Crystal",
+                        Amount = 5,
+                        AmountPerLevel = 5
+                    },
+
+        };
+
     }
 }

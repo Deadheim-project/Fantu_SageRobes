@@ -33,6 +33,8 @@ namespace SageRobes
         public static List<string> headList = new List<string> { "Head Elf" };
         public static List<string> scholarstaffList = new List<string> { "Scholar Fire Staff" };
         public static List<string> artifactList = new List<string> { "Sage Fire Staff", "Sage Holy Staff", "Sage Ice Staff", "Sage Lightning Staff", "Sage Dark Staff" };
+        public static List<string> elvenarmorList = new List<string> { "Elven Greaves Emerald", "Elven Plate Emerald", "Elven Helmet Emerald" };
+        public static List<string> elvenweaponList = new List<string> { "Elven Battleaxe Emerald", "Elven Warhammer Emerald", "Elven Dagger Emerald", "Elven Lance Emerald", "Elven Shield Emerald", "Elven Staff Emerald", "Elven Sword Emerald", "Elven Bow Emerald" };
 
         private void Awake()
         {
@@ -46,20 +48,25 @@ namespace SageRobes
         private void LoadSageRobes()
         {
             ArmorBundle = GetAssetBundleFromResources("sagerobes");
-            //Debug.Log("robeList")
+            Debug.Log("Load robeList");
             robeList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.RobeRequirements));
-            //Debug.Log("crownList")
+            Debug.Log("Load crownList");
             crownList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.CrownRequirements));
-            //Debug.Log("tomeList")
+            Debug.Log("Load tomeList");
             tomeList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.TomeRequirements));
-            //Debug.Log("bladeList")
+            Debug.Log("Load bladeList");
             bladeList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.BladeRequirements));
-            //Debug.Log("headList")
+            Debug.Log("Load headList");
             headList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.headRequirements));
-            //Debug.Log("scholarList")
+            Debug.Log("Load scholarList");
             scholarstaffList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.scholarstaffRequirements));
-            //Debug.Log("artifactList")
+            Debug.Log("Load artifactList");
             artifactList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.ArtifactRequirements, true));
+            Debug.Log("Load elvenarmorList");
+            elvenarmorList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.ElvenArmorRequirements, true));
+            Debug.Log("Load elvenweaponList");
+            elvenweaponList.ForEach(x => AddItemsWithRenderedIcons(x, SageRecipes.ElvenWeaponRequirements, true));
+            Debug.Log("Load Projectiles");
             GameObject IceProjectile = ArmorBundle.LoadAsset<GameObject>("sage_cold_projectile");
             GameObject FireProjectile = ArmorBundle.LoadAsset<GameObject>("sage_fireball_projectile");
             GameObject LightningProjectile = ArmorBundle.LoadAsset<GameObject>("sage_lightning_projectile");
@@ -71,22 +78,32 @@ namespace SageRobes
             PrefabManager.Instance.AddPrefab(SkullProjectile);
             PrefabManager.Instance.AddPrefab(SpiritProjectile);
 
+            Debug.Log("Load VFX");
+            Debug.Log("Load vfx_sagespell_hit");
             GameObject VfxSageSpell = ArmorBundle.LoadAsset<GameObject>("vfx_sagespell_hit");
             PrefabManager.Instance.AddPrefab(VfxSageSpell);
+            Debug.Log("Load vfx_SageFire_AoE1");
             GameObject VfxSageFireAoE1 = ArmorBundle.LoadAsset<GameObject>("vfx_SageFire_AoE1");
             PrefabManager.Instance.AddPrefab(VfxSageFireAoE1);
+            Debug.Log("Load vfx_SageFire_AoE2");
             GameObject VfxSageFireAoE2 = ArmorBundle.LoadAsset<GameObject>("vfx_SageFire_AoE2");
             PrefabManager.Instance.AddPrefab(VfxSageFireAoE2);
+            Debug.Log("Load vfx_SageFireballHit");
             GameObject VfxSageFireballHit = ArmorBundle.LoadAsset<GameObject>("vfx_SageFireballHit");
             PrefabManager.Instance.AddPrefab(VfxSageFireballHit);
+            Debug.Log("Load vfx_SageGhost_death");
             GameObject VfxSageGhostDeath = ArmorBundle.LoadAsset<GameObject>("vfx_SageGhost_death");
             PrefabManager.Instance.AddPrefab(VfxSageGhostDeath);
+            Debug.Log("Load vfx_SageGhost_hit");
             GameObject VfxSageGhostHit = ArmorBundle.LoadAsset<GameObject>("vfx_SageGhost_hit");
             PrefabManager.Instance.AddPrefab(VfxSageGhostHit);
+            Debug.Log("Load vfx_sageice_aoe");
             GameObject VfxSageIceAoe = ArmorBundle.LoadAsset<GameObject>("vfx_sageice_aoe");
             PrefabManager.Instance.AddPrefab(VfxSageIceAoe);
+            Debug.Log("Load vfx_SageSpirit_attack");
             GameObject VfxSageSpiritAttack = ArmorBundle.LoadAsset<GameObject>("vfx_SageSpirit_attack");
             PrefabManager.Instance.AddPrefab(VfxSageSpiritAttack);
+            Debug.Log("Load vfx_SageTerra_hit");
             GameObject VfxSageTerraHit = ArmorBundle.LoadAsset<GameObject>("vfx_SageTerra_hit");
             PrefabManager.Instance.AddPrefab(VfxSageTerraHit);
         }
@@ -159,15 +176,6 @@ namespace SageRobes
         }
 
         [HarmonyPatch]
-//        class ArtisanTablePatch
-//        {
-//            [HarmonyPatch(typeof(Recipe), "GetRequiredStationLevel")]
-//            [HarmonyPostfix]
-//            private static void GetRequiredStationLevelPost(Recipe instance, int quality, ItemDrop _m_item, ref int result)
-//            {
-//                result = artifactList.Concat(robeList).Concat(crownList).ToList().Contains(_m_item.m_itemData.m_dropPrefab.name) ? 1 : result;
-//            }
-//        }
 
         private void OnDestroy()
         {

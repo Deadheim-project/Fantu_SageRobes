@@ -16,7 +16,7 @@ namespace SageRobes
             {
                 Identifier = "Artifact",
                 Name = "Artifact",
-                Description = "Increase magic damage!",
+                Description = "Proficiency in using Artifacts",
                 IncreaseStep = 1f
             });
         }
